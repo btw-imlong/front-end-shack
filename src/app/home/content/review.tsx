@@ -9,7 +9,7 @@ export default function ReviewCard() {
       {/* Top Row */}
       <div className="flex items-center gap-4">
         <Image
-          src="/next.svg" // You can replace with your avatar image in /public
+          src="/3.jpg" // You can replace with your avatar image in /public
           alt="Reviewer"
           width={48}
           height={48}

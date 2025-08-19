@@ -5,28 +5,28 @@ import { Button } from "@/components/ui/button";
 export default function CategorySection() {
   const items = [
     {
-      src: "/image1.jpg",
+      src: "/1.jpeg",
       alt: "Aromatics",
       title: "Supreme Aromatics",
       desc: "Each candle in this collection is a masterpiece, carefully curated to deliver an extraordinary olfactory experience.",
       href: "/products/aromatics",
     },
     {
-      src: "/image2.jpg",
+      src: "/2.jpeg",
       alt: "Traditional Tools",
       title: "Traditional Tools",
       desc: "Handcrafted tools preserving traditional techniques and cultural heritage.",
       href: "/categories/tools",
     },
     {
-      src: "/image3.jpg",
+      src: "/3.jpg",
       alt: "Unique Crafts",
       title: "Unique Crafts",
       desc: "One-of-a-kind pieces that celebrate Cambodian artisanship.",
       href: "/categories/crafts",
     },
     {
-      src: "/image4.jpg",
+      src: "/4.avif",
       alt: "Cultural Art",
       title: "Cultural Art",
       desc: "Artwork inspired by Cambodia’s rich history and traditions.",
