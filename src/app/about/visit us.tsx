@@ -10,7 +10,8 @@ const VisitUs = () => {
         of local makers up close and shop with purpose. 
       </p>
       <h4>Store Info : </h4>
-      <p className="text-gray-700 leading-relaxed mb-4">📍 189 Street 19, Phnom Penh
+      <p className="text-gray-700 leading-relaxed mb-4">
+        📍 189 Street 19, Phnom Penh
         <br />
         🕘 Tuesday–Sunday: 9 AM – 6 PM
         <br />
