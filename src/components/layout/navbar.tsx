@@ -64,7 +64,7 @@ export default function Navbar() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <Link href="/visit-us" className={navLinkClass}>
+          <Link href="/store" className={navLinkClass}>
             Visit Us
           </Link>
           <Link href="/contact" className={navLinkClass}>
