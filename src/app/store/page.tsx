@@ -8,7 +8,6 @@ import photo5 from "@/asset/store-photo5.jpg";
 export default function StorePage() {
   return (
     <div className="bg-white text-gray-800">
-      {/* Hero Section */}
       <section className="relative w-full h-[60vh] md:h-[80vh]">
         <Image
           src="/hero-image.jpg"
@@ -66,7 +65,6 @@ export default function StorePage() {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>{" "}
       </section>
-      {/* Store Photos */}
       <section className="max-w-5xl mx-auto px-6 pb-10">
         <h2 className="text-2xl font-semibold mb-6 text-center">
           Store Photos
@@ -81,7 +79,6 @@ export default function StorePage() {
             />
           ))}
 
-          {/* Centered two images */}
           <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-4">
             {[photo2, photo3].map((p, i) => (
               <Image
