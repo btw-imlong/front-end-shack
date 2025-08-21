@@ -12,7 +12,7 @@ const Features = () => {
       title: "Sustainable",
       description:
         "We choose eco-friendly, low-waste, and natural materials where possible.",
-      icon: <FaLeaf className="text-white shadow-xl/30" />,
+      icon: <FaLeaf className="text-white " />,
     },
     {
       title: "Local & Ethical",
@@ -43,7 +43,7 @@ const Features = () => {
         {values.map((item, idx) => (
           <div
             key={idx}
-            className={`bg-white p-6 rounded-lg shadow-md text-center transform transition duration-700 ease-in-out animate-bounce-slow`}
+            className={`bg-white p-6 rounded-lg shadow-md text-center shadow-xl/30 transform transition duration-700 ease-in-out animate-bounce-slow`}
             style={{
               animationDelay: `${idx * 0.2}s`,
               animationIterationCount: "infinite",
