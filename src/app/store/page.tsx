@@ -38,36 +38,6 @@ export default function StorePage() {
         </div>
       </section>
 
-      {/* <section
-        className="relative h-[60vh] md:h-[80vh] bg-cover bg-center flex items-center justify-center"
-        style={{ backgroundImage: `url(${hero.src})` }}
-      >
-        <div className="bg-black bg-opacity-40 absolute inset-0"></div>
-
-        <div className="relative z-10 text-center text-white border border-white p-6 md:p-14 max-w-md md:max-w-lg w-full">
-          <div className="flex items-center justify-between mb-4 md:mb-6">
-            <span className="text-sm md:text-base">Since</span>
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white flex items-center justify-center text-xs md:text-sm">
-              Shack <br /> Collective
-            </div>
-            <span className="text-sm md:text-base">1992</span>
-          </div>
-
-          <hr className="border-gray-300 mb-4 md:mb-6" />
-
-          <h1 className="text-3xl md:text-4xl font-extrabold">OPEN</h1>
-          <p className="text-base md:text-lg mt-1">Tuesday – Sunday</p>
-          <p className="text-xl md:text-2xl font-semibold text-green-300">
-            9 AM – 6 PM
-          </p>
-
-          <h2 className="text-2xl md:text-3xl font-bold mt-6 text-red-400">
-            CLOSED
-          </h2>
-          <p className="text-base md:text-lg">Monday</p>
-        </div>
-      </section> */}
-
       {/* Address */}
       <section className="max-w-4xl mx-auto px-6 py-10 text-center md:text-left">
         <h2 className="text-xl md:text-2xl font-semibold mb-2">Location</h2>
