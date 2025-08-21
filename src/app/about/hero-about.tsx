@@ -20,7 +20,11 @@ const HeroAbout = () => {
         </p>
         <Button asChild>
           <Link
+<<<<<<< HEAD
             href="/"
+=======
+            href="/products"
+>>>>>>> main
             className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg"
           >
           Visit Our Store          </Link>
