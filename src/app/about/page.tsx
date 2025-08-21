@@ -10,6 +10,7 @@ const page = () => {
       <Story />
       <Features />
       <VisitUs />
+    
     </>
   )
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 const VisitUs = () => {
   return (
-    <div className="mt-20 mx-20">
+    <div className="mt-20 mx-20 mb-20">
       <h2 className="font-bold text-2xl p-2">Visit Us In Store</h2>
       <p className="text-gray-700 leading-relaxed mb-4">
         Come explore our curated space in the heart of Phnom Penh. See the work
