@@ -1,4 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -7,9 +12,25 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import Link from "next/link";
 
 export default function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [categories, setCategories] = useState<any[]>([]);
+
+  // Fetch categories from Strapi
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const res = await fetch("http://localhost:1337/api/a-categories");
+        const data = await res.json();
+        setCategories(data.data || []);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    }
+    fetchCategories();
+  }, []);
+
   // Shared styles for main navbar links
   const navLinkClass =
     "inline-flex items-center text-gray-800 font-medium text-sm hover:underline";
@@ -26,8 +47,8 @@ export default function Navbar() {
           Shack Collective
         </Link>
 
-        {/* Middle: Navigation links */}
-        <div className="flex items-center gap-x-6">
+        {/* Middle: Navigation links (desktop only) */}
+        <div className="hidden md:flex items-center gap-x-6">
           <Link href="/" className={navLinkClass}>
             Home
           </Link>
@@ -43,16 +64,20 @@ export default function Navbar() {
                   Product
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-2 w-48">
-                  <NavigationMenuLink asChild>
-                    <Link href="/product" className={dropdownLinkClass}>
-                      Category 1
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link href="/product" className={dropdownLinkClass}>
-                      Category 2
-                    </Link>
-                  </NavigationMenuLink>
+                  {categories.length > 0 ? (
+                    categories.map((cat) => (
+                      <NavigationMenuLink asChild key={cat.id}>
+                        <Link
+                          href={`/product/${cat.id}`}
+                          className={dropdownLinkClass}
+                        >
+                          {cat.name}
+                        </Link>
+                      </NavigationMenuLink>
+                    ))
+                  ) : (
+                    <p className="text-sm text-gray-500 px-2">Loading...</p>
+                  )}
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
@@ -66,29 +91,129 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Right: Language dropdown */}
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className={navLinkClass}>
-                🌐 Language
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="p-2 w-40">
-                <NavigationMenuLink asChild>
-                  <Link href="#" className={dropdownLinkClass}>
-                    🇬🇧 English
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link href="#" className={dropdownLinkClass}>
-                    🇰🇭 Khmer
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+        {/* Right: Language dropdown (desktop only) */}
+        <div className="hidden md:block">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className={navLinkClass}>
+                  🌐 Language
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="p-2 w-40">
+                  <NavigationMenuLink asChild>
+                    <Link href="#" className={dropdownLinkClass}>
+                      🇬🇧 English
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link href="#" className={dropdownLinkClass}>
+                      🇰🇭 Khmer
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden p-2 text-gray-800"
+          onClick={() => setMobileOpen(true)}
+        >
+          <Menu size={24} />
+        </button>
       </div>
+
+      {/* Mobile drawer (slides from right) */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-50 ${
+          mobileOpen ? "translate-x-0" : "translate-x-full"
+        } md:hidden`}
+      >
+        <div className="flex justify-between items-center p-4 border-b">
+          <span className="text-lg font-bold">Menu</span>
+          <button onClick={() => setMobileOpen(false)}>
+            <X size={24} />
+          </button>
+        </div>
+        <div className="flex flex-col gap-3 p-4">
+          <Link
+            href="/"
+            className={navLinkClass}
+            onClick={() => setMobileOpen(false)}
+          >
+            Home
+          </Link>
+          <Link
+            href="/about"
+            className={navLinkClass}
+            onClick={() => setMobileOpen(false)}
+          >
+            About
+          </Link>
+          <div>
+            <p className="font-medium text-gray-800">Product</p>
+            <div className="ml-3 mt-1 flex flex-col space-y-1">
+              {categories.length > 0 ? (
+                categories.map((cat) => (
+                  <Link
+                    key={cat.id}
+                    href={`/product/${cat.id}`}
+                    className={dropdownLinkClass}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {cat.name}
+                  </Link>
+                ))
+              ) : (
+                <p className="text-sm text-gray-500">Loading...</p>
+              )}
+            </div>
+          </div>
+          <Link
+            href="/store"
+            className={navLinkClass}
+            onClick={() => setMobileOpen(false)}
+          >
+            Visit Us
+          </Link>
+          <Link
+            href="/contact"
+            className={navLinkClass}
+            onClick={() => setMobileOpen(false)}
+          >
+            Contact
+          </Link>
+          <div>
+            <p className="font-medium text-gray-800">🌐 Language</p>
+            <div className="ml-3 mt-1 flex flex-col space-y-1">
+              <Link
+                href="#"
+                className={dropdownLinkClass}
+                onClick={() => setMobileOpen(false)}
+              >
+                🇬🇧 English
+              </Link>
+              <Link
+                href="#"
+                className={dropdownLinkClass}
+                onClick={() => setMobileOpen(false)}
+              >
+                🇰🇭 Khmer
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
     </nav>
   );
 }
