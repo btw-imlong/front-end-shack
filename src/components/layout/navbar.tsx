@@ -64,6 +64,14 @@ export default function Navbar() {
                   Product
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-2 w-48">
+                  {/* First item = All Products */}
+                  <NavigationMenuLink asChild>
+                    <Link href="/product" className={dropdownLinkClass}>
+                      All Products
+                    </Link>
+                  </NavigationMenuLink>
+
+                  {/* Dynamic categories */}
                   {categories.length > 0 ? (
                     categories.map((cat) => (
                       <NavigationMenuLink asChild key={cat.id}>
@@ -71,7 +79,7 @@ export default function Navbar() {
                           href={`/product/${cat.id}`}
                           className={dropdownLinkClass}
                         >
-                          {cat.name}
+                          {cat.attributes?.name || cat.name}
                         </Link>
                       </NavigationMenuLink>
                     ))
