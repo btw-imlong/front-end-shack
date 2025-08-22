@@ -1,8 +1,8 @@
-import React from 'react'
-import HeroAbout from './hero-about'
-import Story from './story'
-import Features from './value'
-import VisitUs from './visit us'
+import React from "react";
+import HeroAbout from "./hero-about";
+import Story from "./story";
+import Features from "./value";
+import VisitUs from "./visit us";
 const page = () => {
   return (
     <>
@@ -10,9 +10,8 @@ const page = () => {
       <Story />
       <Features />
       <VisitUs />
-    
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

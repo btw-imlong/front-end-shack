@@ -1,43 +1,49 @@
-import Image from "next/image";
 import photo1 from "@/asset/store-photo.jpg";
 import photo2 from "@/asset/store-photo2.jpg";
 import photo3 from "@/asset/store-photo3.jpg";
 import photo4 from "@/asset/store-photo4.jpg";
 import photo5 from "@/asset/store-photo5.jpg";
-
+import Image from "next/image";
 export default function StorePage() {
   return (
     <div className="bg-white text-gray-800">
+      {" "}
       <section className="relative w-full h-[60vh] md:h-[80vh]">
+        {" "}
         <Image
           src="/hero-image.jpg"
           alt="Hero Image"
           fill
           className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white px-4">
-          <div className="text-center border border-white p-6 md:p-10 rounded-lg max-w-lg w-full bg-black/10">
-            <div className="flex items-center justify-between mb-4">
-              <span>Since</span>
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border flex items-center justify-center text-xs">
-                Shack <br /> Collective
-              </div>
-              <span>1992</span>
-            </div>
-            <hr className="w-full h-[2px] bg-gradient-to-l from-white to-transparent mb-6" />
-
-            <h1 className="text-3xl md:text-4xl font-extrabold">OPEN</h1>
-            <p className="mt-1 text-2xl text-gray-200">Tuesday – Sunday</p>
-            <p className="text-lg md:text-xl font-semibold text-green-300">
-              9 AM – 6 PM
-            </p>
-
-            <h1 className="text-3xl md:text-4xl font-extrabold">CLOSED</h1>
-
-            <p className="text-2xl text-gray-200">Monday</p>
-          </div>
-        </div>
-      </section>
+        />{" "}
+        <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-white">
+          {" "}
+          <div className="relative z-10 text-center text-white border border-white p-6 md:p-14 max-w-md md:max-w-lg w-full  bg-black/40 rounded-lg shadow-lg  ">
+            {" "}
+            <div className="flex items-center justify-between mb-4 md:mb-6">
+              {" "}
+              <span className="text-sm md:text-base">Since</span>{" "}
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white flex items-center justify-center text-xs md:text-sm">
+                {" "}
+                Shack <br /> Collective{" "}
+              </div>{" "}
+              <span className="text-sm md:text-base">1992</span>{" "}
+            </div>{" "}
+            <hr className="border-gray-300 mb-4 md:mb-6" />{" "}
+            <h1 className="text-3xl md:text-4xl font-extrabold">OPEN</h1>{" "}
+            <p className="text-base md:text-lg mt-1">Tuesday – Sunday</p>{" "}
+            <p className="text-xl md:text-2xl font-semibold text-green-300">
+              {" "}
+              9 AM – 6 PM{" "}
+            </p>{" "}
+            <h2 className="text-3xl md:text-4xl font-extrabold  mt-4">
+              {" "}
+              CLOSED{" "}
+            </h2>{" "}
+            <p className="text-base md:text-lg">Monday</p>{" "}
+          </div>{" "}
+        </div>{" "}
+      </section>{" "}
       {/* Address */}{" "}
       <section className="max-w-4xl mx-auto px-6 py-10 text-center md:text-left">
         {" "}
@@ -64,33 +70,47 @@ export default function StorePage() {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>{" "}
-      </section>
+      </section>{" "}
+      {/* Store Photos */}{" "}
       <section className="max-w-5xl mx-auto px-6 pb-10">
-        <h2 className="text-2xl font-semibold mb-6 text-center">
-          Store Photos
-        </h2>
+        {" "}
+        <h2 className="text-xl md:text-2xl font-semibold mb-6 text-center">
+          {" "}
+          Store Photos{" "}
+        </h2>{" "}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {[photo1, photo4, photo5].map((p, i) => (
-            <Image
-              key={i}
-              src={p}
-              alt={`Store photo ${i + 1}`}
-              className="rounded-lg shadow w-full"
-            />
-          ))}
-
-          <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-4">
-            {[photo2, photo3].map((p, i) => (
-              <Image
-                key={i}
-                src={p}
-                alt={`Inside photo ${i + 1}`}
-                className="rounded-lg shadow w-full"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+          {" "}
+          <img
+            src={photo1.src}
+            alt="Store Front"
+            className="rounded-lg shadow w-full"
+          />{" "}
+          <img
+            src={photo4.src}
+            alt="Display"
+            className="rounded-lg shadow w-full"
+          />{" "}
+          <img
+            src={photo5.src}
+            alt="Shelves"
+            className="rounded-lg shadow w-full"
+          />{" "}
+          {/* Centered two images */}{" "}
+          <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-4 justify-items-center w-full">
+            {" "}
+            <img
+              src={photo2.src}
+              alt="Inside Store"
+              className="rounded-lg shadow w-full md:w-auto"
+            />{" "}
+            <img
+              src={photo3.src}
+              alt="Products"
+              className="rounded-lg shadow w-full md:w-auto"
+            />{" "}
+          </div>{" "}
+        </div>{" "}
+      </section>{" "}
     </div>
   );
 }
