@@ -44,18 +44,12 @@ export default function Navbar() {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-2 w-48">
                   <NavigationMenuLink asChild>
-                    <Link
-                      href="/product/category1"
-                      className={dropdownLinkClass}
-                    >
+                    <Link href="/product" className={dropdownLinkClass}>
                       Category 1
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <Link
-                      href="/product/category2"
-                      className={dropdownLinkClass}
-                    >
+                    <Link href="/product" className={dropdownLinkClass}>
                       Category 2
                     </Link>
                   </NavigationMenuLink>
