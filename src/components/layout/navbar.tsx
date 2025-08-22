@@ -12,42 +12,39 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { getCategories } from "@/lib/api";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [categories, setCategories] = useState<any[]>([]);
 
-  // Fetch categories from Strapi
+  // Fetch categories from API
   useEffect(() => {
-    async function fetchCategories() {
+    async function loadCategories() {
       try {
-        const res = await fetch("http://localhost:1337/api/a-categories");
-        const data = await res.json();
+        const data = await getCategories();
         setCategories(data.data || []);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
+      } catch (err) {
+        console.error(err);
       }
     }
-    fetchCategories();
+    loadCategories();
   }, []);
 
-  // Shared styles for main navbar links
   const navLinkClass =
     "inline-flex items-center text-gray-800 font-medium text-sm hover:underline";
-
-  // Shared styles for dropdown links
   const dropdownLinkClass =
     "inline-flex items-center gap-2 p-2 rounded text-gray-800 font-medium text-sm hover:bg-gray-100 whitespace-nowrap";
 
   return (
     <nav className="bg-white border-b border-gray-200">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        {/* Left: Logo */}
+        {/* Logo */}
         <Link href="/" className="text-xl font-bold">
           Shack Collective
         </Link>
 
-        {/* Middle: Navigation links (desktop only) */}
+        {/* Desktop navigation */}
         <div className="hidden md:flex items-center gap-x-6">
           <Link href="/" className={navLinkClass}>
             Home
@@ -64,7 +61,7 @@ export default function Navbar() {
                   Product
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-2 w-48">
-                  {/* First item = All Products */}
+                  {/* All Products */}
                   <NavigationMenuLink asChild>
                     <Link href="/product" className={dropdownLinkClass}>
                       All Products
@@ -99,7 +96,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Right: Language dropdown (desktop only) */}
+        {/* Language dropdown */}
         <div className="hidden md:block">
           <NavigationMenu>
             <NavigationMenuList>
@@ -133,7 +130,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile drawer (slides from right) */}
+      {/* Mobile drawer */}
       <div
         className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-50 ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
@@ -160,9 +157,18 @@ export default function Navbar() {
           >
             About
           </Link>
+
+          {/* Mobile Product */}
           <div>
             <p className="font-medium text-gray-800">Product</p>
             <div className="ml-3 mt-1 flex flex-col space-y-1">
+              <Link
+                href="/product"
+                className={dropdownLinkClass}
+                onClick={() => setMobileOpen(false)}
+              >
+                All Products
+              </Link>
               {categories.length > 0 ? (
                 categories.map((cat) => (
                   <Link
@@ -171,7 +177,7 @@ export default function Navbar() {
                     className={dropdownLinkClass}
                     onClick={() => setMobileOpen(false)}
                   >
-                    {cat.name}
+                    {cat.attributes?.name || cat.name}
                   </Link>
                 ))
               ) : (
@@ -179,6 +185,7 @@ export default function Navbar() {
               )}
             </div>
           </div>
+
           <Link
             href="/store"
             className={navLinkClass}
@@ -193,6 +200,7 @@ export default function Navbar() {
           >
             Contact
           </Link>
+
           <div>
             <p className="font-medium text-gray-800">🌐 Language</p>
             <div className="ml-3 mt-1 flex flex-col space-y-1">
