@@ -3,7 +3,6 @@ import React from "react";
 const Story = () => {
   return (
     <div className="space-y-12">
-   
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mt-10">
         <div className="flex flex-col justify-center text-center p-6">
           <h2 className="text-3xl font-bold mb-4">Our Story</h2>
@@ -24,7 +23,6 @@ const Story = () => {
           />
         </div>
       </div>
-
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
         <div>
           <img
