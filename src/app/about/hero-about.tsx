@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 const HeroAbout = () => {
   return (
-     <section className="relative w-full h-[60vh] md:h-[80vh]">
+    <section className="relative w-full h-[60vh] md:h-[80vh]">
       <Image
         src="/hero-about.jpg"
         alt="Hero-about Image"
@@ -20,15 +20,15 @@ const HeroAbout = () => {
         </p>
         <Button asChild>
           <Link
-            href="/"
+            href="/store"
             className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg"
           >
-          Visit Our Store          </Link>
+            Visit Our Store{" "}
+          </Link>
         </Button>
       </div>
     </section>
+  );
+};
 
-  )
-}
-
-export default HeroAbout
+export default HeroAbout;
