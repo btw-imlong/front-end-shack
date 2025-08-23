@@ -24,7 +24,6 @@ type Store = {
   id: number;
   documentId: string;
   address?: string;
-  map_embed_url?: string; // Must be Google Maps embed URL
   opening_hours?: OpeningHours;
 };
 
@@ -39,16 +38,7 @@ export default function StorePage() {
         const data = await res.json();
         console.log("API response:", data);
 
-        // Optional: Convert normal Google Maps URL to embed URL
-        const processedStores = (data.data || []).map((store: Store) => {
-          if (store.map_embed_url && !store.map_embed_url.includes("/embed")) {
-            const query = encodeURIComponent(store.map_embed_url);
-            store.map_embed_url = `https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${query}`;
-          }
-          return store;
-        });
-
-        setStores(processedStores);
+        setStores(data.data || []);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching store infos:", error);
@@ -72,14 +62,14 @@ export default function StorePage() {
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white">
           <div className="border border-white p-6 md:p-14 max-w-md md:max-w-lg w-full text-center rounded-lg bg-black/30 shadow-lg">
-            <p className="text-sm tracking-wide flex justify-between items-center">
+            <div className="text-sm tracking-wide flex justify-between items-center">
               <span>Since</span>
               <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white flex items-center justify-center text-xs md:text-sm">
-                {" "}
-                Shack <br /> Collective{" "}
-              </div>{" "}
+                Shack <br /> Collective
+              </div>
               <span>1992</span>
-            </p>
+            </div>
+
             <hr className="border-t border-gray-300 my-2" />
             {stores.length > 0 && stores[0].opening_hours ? (
               <>
@@ -87,11 +77,9 @@ export default function StorePage() {
                 <div className="mt-6">
                   <h2 className="text-3xl md:text-4xl font-extrabold">OPEN</h2>
                   <p className="mt-2 text-lg">
-                    {/* Show open days (all except closed ones) */}
                     {Object.entries(stores[0].opening_hours)
                       .filter(
-                        ([day, hours]) =>
-                          hours && hours.toLowerCase() !== "closed"
+                        ([, hours]) => hours && hours.toLowerCase() !== "closed"
                       )
                       .map(
                         ([day]) => day.charAt(0).toUpperCase() + day.slice(1)
@@ -100,7 +88,6 @@ export default function StorePage() {
                   </p>
                   <p className="text-xl font-semibold">
                     {
-                      // Show first non-closed day’s hours
                       Object.entries(stores[0].opening_hours).find(
                         ([, hours]) => hours && hours.toLowerCase() !== "closed"
                       )?.[1]
@@ -134,22 +121,6 @@ export default function StorePage() {
           <div key={store.id} className="mb-10 border-b pb-6">
             <h2 className="text-2xl font-semibold mb-2">Store #{store.id}</h2>
             {store.address && <p>📍 {store.address}</p>}
-
-            {store.map_embed_url ? (
-              <div className="mt-4">
-                <iframe
-                  src={store.map_embed_url}
-                  width="100%"
-                  height="300"
-                  className="rounded-lg shadow-md"
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
-            ) : (
-              <p className="text-sm mt-2 text-gray-500">Map not available</p>
-            )}
           </div>
         ))}
       </section>
