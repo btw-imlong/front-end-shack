@@ -27,14 +27,15 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-orange-600 mb-4">Contact</h3>
             <p>
-              <span className="font-semibold">Phone</span> : 602-774-4735
+              <span className="font-semibold">Phone</span> : 099 705 984
             </p>
             <p>
               <span className="font-semibold">Location</span> : 189 Preah Ang
-              Yukanthor Street (19), Phnom Penh
+              Yukanthor Street (19), Phnom Penh, Cambodia
             </p>
             <p>
-              <span className="font-semibold">Email</span> : hello@unifiedui.com
+              <span className="font-semibold">Email</span> :
+              shackcollectivephnompenh@gmail.com
             </p>
           </div>
 
@@ -62,10 +63,10 @@ export default function Footer() {
             <h3 className="font-semibold text-orange-600 mb-4">Follow Us</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#">Facebook</a>
+                <a href="https://www.facebook.com/shackcollective">Facebook</a>
               </li>
               <li>
-                <a href="#">Instagram</a>
+                <a href="shackcollectivepp · 1.4K followers">Instagram</a>
               </li>
               <li>
                 <a href="#">LinkedIn</a>
