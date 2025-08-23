@@ -7,7 +7,7 @@ import photo2 from "@/asset/store-photo2.jpg";
 import photo3 from "@/asset/store-photo3.jpg";
 import photo4 from "@/asset/store-photo4.jpg";
 import photo5 from "@/asset/store-photo5.jpg";
-
+import photo6 from "@/asset/store-photo-7.jpg";
 // Type for opening hours
 type OpeningHours = {
   monday?: string;
@@ -114,44 +114,33 @@ export default function StorePage() {
         </div>
       </section>
 
-      {/* Stores List */}
-      {/* <section className="max-w-4xl mx-auto px-6 py-10 text-center md:text-left">
-        {stores.length === 0 && <p>No store info available</p>}
-        {stores.map((store) => (
-          <div key={store.id} className="mb-10 border-b pb-6">
-            <h2 className="text-2xl font-semibold mb-2">Store #{store.id}</h2>
-            {store.address && <p>📍 {store.address}</p>}
-          </div>
-        ))}
-      </section> */}
-      {/* address */}
-      <div className="bg-white text-gray-800 py-10 px-6">
-        {/* Store Info */}
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Store Location</h2>
-          <p className="text-lg">
-            📍 179-193 Preah Ang Yukanthor Street (Street 19), Daun Penh, Phnom
-            Penh
-          </p>
-          <p className="text-gray-600">
-            ⏰ Open Tuesday – Sunday: 9:00 AM – 6:00 PM <br />
-            Closed on Mondays
-          </p>
-        </div>
+      {/* Address */}
+      <section className="max-w-4xl mx-auto px-6 py-10 text-center md:text-left">
+        <h2 className="text-xl md:text-2xl font-semibold mb-2">Location</h2>
+        <p>189 Preah Ang Yukanthor Street (19), Phnom Penh, Cambodia</p>
+        <p className="mt-1">📞 099 705 984</p>
+        <p className="mt-1">✉️ shackcollectivephnompenh@gmail.com</p>
+      </section>
 
-        {/* Google Map Embed */}
-        <div className="max-w-4xl mx-auto mt-8">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.9548618795133!2d104.9166602!3d11.5658706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513d1c436d77%3A0x6cfb8c09d6dbe947!2s179-193%20Preah%20Ang%20Yukanthor%20St%20(St%2019)%2C%20Phnom%20Penh!5e0!3m2!1sen!2skh!4v1724392047469!5m2!1sen!2skh"
-            width="100%"
-            height="400"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="rounded-2xl shadow-md"
-          ></iframe>
-        </div>
-      </div>
+      {/* Map */}
+      <section className="max-w-4xl mx-auto px-6 mb-10">
+        <h2 className="text-xl md:text-2xl font-semibold mb-4 text-center md:text-left">
+          Store Location
+        </h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.186186679493!2d104.92764!3d11.5645746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31095137f72717b5%3A0xa8c8cbeeb72d2166!2s189%20Preah%20Ang%20Yukanthor%20St%20(19)%2C%20Phnom%20Penh!5e0!3m2!1sen!2skh!4v1692624000000!5m2!1sen!2skh"
+          width="100%"
+          height="350"
+          className="rounded-lg shadow-md"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <p className="mt-4 text-center md:text-left text-gray-700">
+          189 Preah Ang Yukanthor Street (19), Phnom Penh
+        </p>
+      </section>
+
       {/* Store Photos */}
       <section className="max-w-5xl mx-auto px-6 pb-10">
         <h2 className="text-xl md:text-2xl font-semibold mb-6 text-center">
@@ -185,6 +174,11 @@ export default function StorePage() {
               className="rounded-lg shadow w-full md:w-auto"
             />
           </div>
+          <img
+            src={photo6.src}
+            alt="Product"
+            className="rounded-lg shadow w-full md:w-auto"
+          />
         </div>
       </section>
     </div>
