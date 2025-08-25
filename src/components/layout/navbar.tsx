@@ -3,7 +3,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import Logo from "@/asset/Shack collective TransBlack.png";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,12 +15,13 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { getCategories } from "@/lib/api";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [categories, setCategories] = useState<any[]>([]);
+  const { t, setLanguage } = useLanguage();
 
-  // Fetch categories from API
   useEffect(() => {
     async function loadCategories() {
       try {
@@ -38,37 +41,35 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white border-b border-gray-200">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        {/* Logo */}
-        <Link href="/" className="text-xl font-bold">
-          Shack Collective
-        </Link>
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        <Image
+          src={Logo}
+          alt="Shack Collective"
+          className="h-10 w-auto md:h-20"
+        />
 
-        {/* Desktop navigation */}
+        {/* Desktop menu */}
         <div className="hidden md:flex items-center gap-x-6">
           <Link href="/" className={navLinkClass}>
-            Home
+            {t("home")}
           </Link>
           <Link href="/about" className={navLinkClass}>
-            About
+            {t("about")}
           </Link>
 
-          {/* Product dropdown */}
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className={navLinkClass}>
-                  Product
+                  {t("product")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-2 w-48">
-                  {/* All Products */}
                   <NavigationMenuLink asChild>
                     <Link href="/product" className={dropdownLinkClass}>
-                      All Products
+                      {t("allProducts")}
                     </Link>
                   </NavigationMenuLink>
 
-                  {/* Dynamic categories */}
                   {categories.length > 0 ? (
                     categories.map((cat) => (
                       <NavigationMenuLink asChild key={cat.id}>
@@ -89,31 +90,37 @@ export default function Navbar() {
           </NavigationMenu>
 
           <Link href="/store" className={navLinkClass}>
-            Visit Us
+            {t("visit")}
           </Link>
           <Link href="/contact" className={navLinkClass}>
-            Contact
+            {t("contact")}
           </Link>
         </div>
 
-        {/* Language dropdown */}
+        {/* Language switcher */}
         <div className="hidden md:block">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className={navLinkClass}>
-                  🌐 Language
+                  🌐 {t("language")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-2 w-40">
                   <NavigationMenuLink asChild>
-                    <Link href="#" className={dropdownLinkClass}>
+                    <button
+                      className={dropdownLinkClass}
+                      onClick={() => setLanguage("en")}
+                    >
                       🇬🇧 English
-                    </Link>
+                    </button>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <Link href="#" className={dropdownLinkClass}>
+                    <button
+                      className={dropdownLinkClass}
+                      onClick={() => setLanguage("km")}
+                    >
                       🇰🇭 Khmer
-                    </Link>
+                    </button>
                   </NavigationMenuLink>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -121,7 +128,6 @@ export default function Navbar() {
           </NavigationMenu>
         </div>
 
-        {/* Mobile menu button */}
         <button
           className="md:hidden p-2 text-gray-800"
           onClick={() => setMobileOpen(true)}
@@ -148,26 +154,25 @@ export default function Navbar() {
             className={navLinkClass}
             onClick={() => setMobileOpen(false)}
           >
-            Home
+            {t("home")}
           </Link>
           <Link
             href="/about"
             className={navLinkClass}
             onClick={() => setMobileOpen(false)}
           >
-            About
+            {t("about")}
           </Link>
 
-          {/* Mobile Product */}
           <div>
-            <p className="font-medium text-gray-800">Product</p>
+            <p className="font-medium text-gray-800">{t("product")}</p>
             <div className="ml-3 mt-1 flex flex-col space-y-1">
               <Link
                 href="/product"
                 className={dropdownLinkClass}
                 onClick={() => setMobileOpen(false)}
               >
-                All Products
+                {t("allProducts")}
               </Link>
               {categories.length > 0 ? (
                 categories.map((cat) => (
@@ -191,39 +196,42 @@ export default function Navbar() {
             className={navLinkClass}
             onClick={() => setMobileOpen(false)}
           >
-            Visit Us
+            {t("visit")}
           </Link>
           <Link
             href="/contact"
             className={navLinkClass}
             onClick={() => setMobileOpen(false)}
           >
-            Contact
+            {t("contact")}
           </Link>
 
           <div>
-            <p className="font-medium text-gray-800">🌐 Language</p>
+            <p className="font-medium text-gray-800">🌐 {t("language")}</p>
             <div className="ml-3 mt-1 flex flex-col space-y-1">
-              <Link
-                href="#"
+              <button
                 className={dropdownLinkClass}
-                onClick={() => setMobileOpen(false)}
+                onClick={() => {
+                  setLanguage("en");
+                  setMobileOpen(false);
+                }}
               >
                 🇬🇧 English
-              </Link>
-              <Link
-                href="#"
+              </button>
+              <button
                 className={dropdownLinkClass}
-                onClick={() => setMobileOpen(false)}
+                onClick={() => {
+                  setLanguage("km");
+                  setMobileOpen(false);
+                }}
               >
                 🇰🇭 Khmer
-              </Link>
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Overlay */}
       {mobileOpen && (
         <div
           className="fixed inset-0 bg-black/40 z-40 md:hidden"
