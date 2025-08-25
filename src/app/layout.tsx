@@ -1,19 +1,27 @@
+// Imports
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 // Components
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Context
+import { LanguageProvider } from "@/context/LanguageContext";
+
+// Google Fonts
+import { Montserrat, Inter } from "next/font/google";
+
+const montserrat = Montserrat({
+  variable: "--font-heading",
   subsets: ["latin"],
+  weight: ["400", "700"], // normal and bold
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600"], // optional variations
 });
 
 export const metadata: Metadata = {
@@ -30,18 +38,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* Global navigation */}
-        <Navbar />
-        {/* Optional: <NavigationMenu /> */}
-
-        {/* Page content */}
-        <main>{children}</main>
-
-        {/* You could add a footer here */}
-        <Footer />
+      <body className={`${montserrat.variable} ${inter.variable} antialiased`}>
+        <LanguageProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
