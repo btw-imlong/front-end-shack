@@ -1,20 +1,35 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { getPartners } from "@/lib/api"; // adjust the import path
 
 export default function Partners() {
-  const partners = [
-    "/public/image 36.png",
-    "/public/image 36.png",
-    "/public/image 36.png",
-    "/public/image 36.png",
-    "/public/image 36.png",
-    "/public/image 36.png",
-    "/public/image 36.png",
-    "/public/image 36.png",
-    "/public/image 36.png",
-    "/public/image 36.png",
-  ];
+  const [partners, setPartners] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPartners = async () => {
+      try {
+        const data = await getPartners(); // your lib should return data.data
+        setPartners(data.data.slice(0, 10));
+      } catch (err) {
+        console.error("Failed to fetch partners:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPartners();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-16 px-6 text-center">
+        <p>Loading partners...</p>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 px-6">
@@ -24,20 +39,41 @@ export default function Partners() {
         </h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
-          {partners.map((src, i) => (
-            <div
-              key={i}
-              className="flex items-center justify-center bg-white rounded-2xl  p-6 hover:shadow-lg transition"
-            >
-              <Image
-                src="/public/image 36.png"
-                alt={`Partner ${i + 1}`}
-                width={150}
-                height={80}
-                className="object-contain"
-              />
-            </div>
-          ))}
+          {partners.map((partner, i) => {
+            const logoUrl = partner.logo?.[0]?.url || "";
+            const website = partner.website_url;
+
+            return (
+              <div
+                key={partner.id || i}
+                className="flex items-center justify-center bg-white rounded-2xl p-6 "
+              >
+                {logoUrl ? (
+                  website ? (
+                    <a href={website} target="_blank" rel="noopener noreferrer">
+                      <Image
+                        src={logoUrl}
+                        alt={partner.name || `Partner ${i + 1}`}
+                        width={150}
+                        height={80}
+                        className="object-contain"
+                      />
+                    </a>
+                  ) : (
+                    <Image
+                      src={logoUrl}
+                      alt={partner.name || `Partner ${i + 1}`}
+                      width={150}
+                      height={80}
+                      className="object-contain"
+                    />
+                  )
+                ) : (
+                  <span className="text-gray-400">No logo</span>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
