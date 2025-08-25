@@ -17,7 +17,6 @@ const ContactPage = () => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<null | "success" | "error">(null);
 
-  // Handle input change
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -61,7 +60,6 @@ const ContactPage = () => {
       <h1 className="text-3xl font-bold mb-8 ml-15">Contact Us</h1>
 
       <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-md grid md:grid-cols-2 overflow-hidden">
-        {/* Left Contact Info */}
         <div className="relative bg-[#7A3E26] text-white p-8 flex flex-col justify-between overflow-hidden">
           <div>
             <h2 className="text-2xl font-semibold mb-6">Contact Us</h2>
@@ -87,7 +85,6 @@ const ContactPage = () => {
             </div>
           </div>
 
-          {/* Social Icons */}
           <div className="flex gap-4 mt-8">
             <a href="#" className="hover:text-gray-300">
               <FaFacebook size={22} />
@@ -100,11 +97,9 @@ const ContactPage = () => {
             </a>
           </div>
 
-          {/* Circle Decoration */}
           <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-black/20 rounded-full"></div>
         </div>
 
-        {/* Right Contact Form */}
         <div className="p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
