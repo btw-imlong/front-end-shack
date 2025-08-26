@@ -3,13 +3,7 @@ import Image from "next/image";
 
 const Page = () => {
   // Add all thumbnail images here
-  const thumbnails =[
-    "/1.jpeg",
-    "/1.jpeg",
-    "/1.jpeg",
-    "/1.jpeg",
-    "/1.jpeg",
-  ];
+  const thumbnails = ["/1.jpeg", "/1.jpeg", "/1.jpeg", "/1.jpeg", "/1.jpeg"];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mt-5">
@@ -27,17 +21,16 @@ const Page = () => {
       {/* Right side content */}
       <div className="grid grid-cols-[auto_1fr] gap-4">
         {/* Thumbnails */}
-          <div className=" gap-4">
-      {thumbnails.map((src, index) => (
-        <img
-          key={index}
-          src={src}
-          alt={`Thumbnail ${index + 1}`}
-          className="w-25 h-30 object-cover rounded-md p-2  hover:bg-gray-300 hover:shadow-md duration-200"
-        />
-      ))}
-    </div>
-
+        <div className=" gap-4">
+          {thumbnails.map((src, index) => (
+            <Image
+              key={index}
+              src={src}
+              alt={`Thumbnail ${index + 1}`}
+              className="w-25 h-30 object-cover rounded-md p-2  hover:bg-gray-300 hover:shadow-md duration-200"
+            />
+          ))}
+        </div>
 
         {/* Text */}
         <div className="max-w-lg">

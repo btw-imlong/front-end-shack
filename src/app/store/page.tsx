@@ -99,7 +99,7 @@ export default function StorePage() {
                 <div className="mt-6">
                   <h2 className="text-2xl md:text-3xl font-bold">CLOSED</h2>
                   {Object.entries(stores[0].opening_hours)
-                    .filter(([_, hours]) => hours?.toLowerCase() === "closed")
+                    .filter(([, hours]) => hours?.toLowerCase() === "closed")
                     .map(([day]) => (
                       <p key={day} className="mt-2 text-lg capitalize">
                         {day}
@@ -147,34 +147,34 @@ export default function StorePage() {
           Store Photos
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <img
+          <Image
             src={photo1.src}
             alt="Store Front"
             className="rounded-lg shadow w-full"
           />
-          <img
+          <Image
             src={photo4.src}
             alt="Display"
             className="rounded-lg shadow w-full"
           />
-          <img
+          <Image
             src={photo5.src}
             alt="Shelves"
             className="rounded-lg shadow w-full"
           />
           <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-4 justify-items-center w-full">
-            <img
+            <Image
               src={photo2.src}
               alt="Inside Store"
               className="rounded-lg shadow w-full md:w-auto"
             />
-            <img
+            <Image
               src={photo3.src}
               alt="Products"
               className="rounded-lg shadow w-full md:w-auto"
             />
           </div>
-          <img
+          <Image
             src={photo6.src}
             alt="Product"
             className="rounded-lg shadow w-full md:w-auto"

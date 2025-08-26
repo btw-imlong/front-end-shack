@@ -1,9 +1,9 @@
 import React from "react";
+import Image from "next/image";
 
 const Story = () => {
   return (
     <div className="space-y-12">
-   
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mt-10">
         <div className="flex flex-col justify-center text-center p-6">
           <h2 className="text-3xl font-bold mb-4">Our Story</h2>
@@ -12,12 +12,12 @@ const Story = () => {
             the creativity of Cambodia’s independent makers. We curate a unique
             mix of handmade fashion, home décor, art, and gifts from local
             brands who care about quality, culture, and community. Whether
-            you're a traveler or a local shopper, our shop is here to inspire
-            conscious living and support meaningful craftsmanship.
+            you&apos;re a traveler or a local shopper, our shop is here to
+            inspire conscious living and support meaningful craftsmanship.
           </p>
         </div>
         <div>
-          <img
+          <Image
             src="/story-about.jpg"
             alt="Our Story"
             className="object-cover w-full h-full rounded-md shadow-md"
@@ -27,7 +27,7 @@ const Story = () => {
 
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
         <div>
-          <img
+          <Image
             src="/people.jpeg"
             alt="Our Story"
             className="object-cover w-full h-full rounded-md shadow-md"
