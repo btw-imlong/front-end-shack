@@ -3,6 +3,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export type SlideType = {
@@ -42,7 +43,7 @@ export function Carousel({ slides }: CarouselProps) {
               animate={{ rotate: offset * 15 }}
               style={{ transformOrigin: "50% 80%" }}
             >
-              <img
+              <Image
                 src={slide.src}
                 alt={slide.title}
                 className="w-full h-full object-cover"
