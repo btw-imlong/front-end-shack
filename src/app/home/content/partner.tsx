@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { getPartners } from "@/lib/api"; // adjust the import path
 
 export default function Partners() {
   const [partners, setPartners] = useState<any[]>([]);
@@ -11,7 +10,10 @@ export default function Partners() {
   useEffect(() => {
     const fetchPartners = async () => {
       try {
-        const data = await getPartners(); // your lib should return data.data
+        const res = await fetch(
+          "http://localhost:1337/api/partners?populate=*"
+        );
+        const data = await res.json();
         setPartners(data.data.slice(0, 10));
       } catch (err) {
         console.error("Failed to fetch partners:", err);
@@ -40,6 +42,7 @@ export default function Partners() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
           {partners.map((partner, i) => {
+            // logo is an array in your API
             const logoUrl = partner.logo?.[0]?.url || "";
             const website = partner.website_url;
 
