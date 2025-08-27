@@ -89,10 +89,16 @@ const ContactPage = () => {
           </div>
 
           <div className="flex gap-4 mt-8">
-            <a href="#" className="hover:text-gray-300">
+            <a
+              href="https://www.facebook.com/shackcollective/"
+              className="hover:text-gray-300"
+            >
               <FaFacebook size={22} />
             </a>
-            <a href="#" className="hover:text-gray-300">
+            <a
+              href="https://www.instagram.com/shackcollectivepp/"
+              className="hover:text-gray-300"
+            >
               <FaInstagram size={22} />
             </a>
             <a href="#" className="hover:text-gray-300">
