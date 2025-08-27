@@ -1,25 +1,34 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// src/app/categories/[id]/page.tsx
+
 import { getCategories } from "@/lib/api";
 import ProductCard from "@/components/Productcard";
+import { CategoryData, Product, DescriptionBlock } from "@/types";
 
 export default async function CategoryPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const categoryId = params.id;
+  const { id } = await params;
 
-  // Fetch categories from API
   const data = await getCategories();
+  const categories: CategoryData[] = data.data;
 
-  // Find the category by documentId
-  const category = data.data.find((c: any) => c.documentId === categoryId);
+  const category = categories.find((c: CategoryData) => c.documentId === id);
 
   if (!category) {
     return <p className="text-center py-12">Category not found.</p>;
   }
 
-  const products = category.products || [];
+  const products: Product[] = (category.products || []).map((p: Product) => ({
+    ...p,
+    id: Number(p.id),
+    documentId: p.documentId ?? "",
+    description: p.description ?? ([] as DescriptionBlock[]),
+    photos: p.photos ?? [],
+    category: p.category ?? undefined,
+    name: p.name ?? "Unnamed Product",
+  }));
 
   return (
     <div className="max-w-6xl mx-auto p-6">
@@ -32,7 +41,7 @@ export default async function CategoryPage({
         <p className="text-center py-12">No products found in this category.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product: any) => (
+          {products.map((product: Product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
