@@ -99,14 +99,8 @@ export default function VisitUs() {
 
         <div className="flex gap-4">
           <Link
-            href="/shop-online"
-            className="bg-amber-900 text-white px-4 py-2 rounded hover:bg-brown-600"
-          >
-            Shop Online
-          </Link>
-          <Link
             href="/store"
-            className="bg-amber-900 text-white px-4 py-2 rounded hover:bg-brown-600"
+            className="bg-amber-900 text-white px-8 py-2 rounded hover:bg-brown-600"
           >
             Visit Us
           </Link>
