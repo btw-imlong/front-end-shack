@@ -29,15 +29,18 @@ const ContactPage = () => {
     setStatus(null);
 
     try {
-      await axios.post("http://localhost:1337/api/contact-messages", {
-        data: {
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          email: formData.email,
-          phone_number: formData.phone,
-          message: formData.message,
-        },
-      });
+      await axios.post(
+        "https://hopeful-crown-f1e9853770.strapiapp.com/api/contact-messages",
+        {
+          data: {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            email: formData.email,
+            phone_number: formData.phone,
+            message: formData.message,
+          },
+        }
+      );
 
       setStatus("success");
       setFormData({
