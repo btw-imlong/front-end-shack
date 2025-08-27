@@ -1,14 +1,15 @@
 import React from "react";
-import HeroAbout from "./hero-about";
+import Hero from "./hero-about";
 import Story from "./story";
-import Features from "./value";
+import Value from "./value";
 import VisitUs from "./visit us";
+
 const page = () => {
   return (
     <>
-      <HeroAbout />
+      <Hero />
       <Story />
-      <Features />
+      <Value />
       <VisitUs />
     </>
   );
