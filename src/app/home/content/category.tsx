@@ -14,6 +14,11 @@ interface Category {
   image_url: {
     url: string;
     alternativeText?: string | null;
+    formats?: {
+      large?: { url: string };
+      medium?: { url: string };
+      small?: { url: string };
+    };
   };
 }
 
@@ -50,42 +55,45 @@ export default function CategorySection() {
           tools, and unique crafts that celebrate Cambodian culture.
         </p>
       </div>
-
       <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
         {categories.slice(0, 4).map((item) => {
-          const imageUrl = item.image_url?.url;
+          const imageUrl =
+            item.image_url?.formats?.large?.url ||
+            item.image_url?.formats?.medium?.url ||
+            item.image_url?.formats?.small?.url ||
+            item.image_url?.url;
+
           const altText = item.image_url?.alternativeText || item.name;
           const descText = item.description?.[0]?.children?.[0]?.text || "";
 
           return (
-            <div
-              key={item.id}
-              className="relative group overflow-hidden rounded-xl aspect-[16/9]"
-            >
-              {imageUrl && (
-                <Image
-                  src={imageUrl}
-                  alt={altText}
-                  fill
-                  sizes="(min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              )}
+            <Link key={item.id} href={`/categories/${item.documentId}`}>
+              <div className="relative group overflow-hidden rounded-xl aspect-[16/9] cursor-pointer">
+                {imageUrl && (
+                  <Image
+                    src={imageUrl}
+                    alt={altText}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
 
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300">
-                  <div className="bg-white/95 backdrop-blur rounded-2xl shadow-xl p-5 w-11/12 max-w-md text-center">
-                    <h3 className="font-semibold text-lg mb-2">{item.name}</h3>
-                    <p className="text-sm text-gray-700 mb-4">{descText}</p>
-                    <Link href={`/categories/${item.documentId}`}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300">
+                    <div className="bg-white/95 backdrop-blur rounded-2xl shadow-xl p-5 w-11/12 max-w-md text-center">
+                      <h3 className="font-semibold text-lg mb-2">
+                        {item.name}
+                      </h3>
+                      <p className="text-sm text-gray-700 mb-4">{descText}</p>
                       <Button className="px-6">Read More</Button>
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
