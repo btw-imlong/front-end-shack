@@ -1,5 +1,7 @@
 // lib/api.ts
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337/api";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://hopeful-crown-f1e9853770.strapiapp.com/api";
 
 // Generic fetcher
 async function fetchAPI(endpoint: string, options: RequestInit = {}) {
