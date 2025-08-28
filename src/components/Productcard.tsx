@@ -25,27 +25,38 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition overflow-hidden flex flex-col">
       {imageUrl && (
-        <div className="relative w-full h-64">
+        <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] md:aspect-[16/9]">
           <Image
             src={imageUrl}
             alt={product.name}
             fill
-            className="object-cover"
+            className="object-contain"
+            sizes="(max-width: 640px) 100vw, 
+                   (max-width: 1024px) 50vw, 
+                   33vw"
           />
         </div>
       )}
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-lg font-semibold mb-2 line-clamp-1">
+      <div className="p-4 sm:p-6 flex flex-col flex-grow">
+        <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2 line-clamp-1">
           {product.name}
         </h3>
+
         {product.category?.name && (
-          <p className="text-xs text-yellow-600 mb-2 uppercase tracking-wide">
+          <p className="text-[10px] sm:text-xs text-yellow-600 mb-1 sm:mb-2 uppercase tracking-wide">
             {product.category.name}
           </p>
         )}
-        <p className="text-sm text-gray-600 line-clamp-3 mb-4">{descText}</p>
+
+        <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 sm:line-clamp-3 mb-3 sm:mb-4">
+          {descText}
+        </p>
+
         <div className="mt-auto">
-          <Button asChild className="w-full">
+          <Button
+            asChild
+            className="w-full text-xs sm:text-sm py-2 sm:py-3 rounded-xl"
+          >
             <Link href={`/products/${product.documentId}`}>View Product</Link>
           </Button>
         </div>
